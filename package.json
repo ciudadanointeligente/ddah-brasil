@@ -47,6 +47,7 @@
     "ember-data": "^2.7.0",
     "ember-export-application-global": "^1.0.5",
     "ember-filesystem": "0.2.2",
+    "ember-i18n": "5.0.1",
     "ember-load-initializers": "^0.5.1",
     "ember-lodash": "4.17.0",
     "ember-metal": "^0.9.2",

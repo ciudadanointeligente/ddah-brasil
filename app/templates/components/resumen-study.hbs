@@ -4,8 +4,8 @@
   <div class="jumbotron">
     <div class="container">
       <div class="row">
-        <h1 class="text-center">Quanto cumpriu Prefeitura do Rio em 200 dias de governo?</h1>
-        <p class="text-center">Quanto cumpriu a gestão de Marcelo Crivella na Prefeitura do Rio em 200 dias de governo? Descubra em Dito e Feito Rio.</p>
+        <h1 class="text-center">{{t "resume-study.title"}}</h1>
+        <p class="text-center">{{t "resume-study.subtitle"}}</p>
         <div class="col-md-3 hidden-sm hidden-xs text-center">
             <img src="{{img 'bachelet.svg'}}">
           </div>
@@ -13,7 +13,7 @@
             <div class="total-result cumplimientos">
               {{study.fullfilment}}%
             </div>
-              <h3 class="label-cumplimiento">cumprimiento <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Porcentaje que indica el promedio de avance de todas las promesas contenidas en el estudio"></i></h3>
+              <h3 class="label-cumplimiento">{{t "resume-study.fullfilment"}} <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Porcentaje que indica el promedio de avance de todas las promesas contenidas en el estudio"></i></h3>
               <div class="chart estudio-total">
                 {{ember-chart type='doughnut' data=study.chartDataFront options=study.doughnutOpt height=150}}
               </div>
@@ -62,8 +62,8 @@
           </ul>
         </div>
         <div class="col-md-6 text-right">
-{{#link-to "study" study.slug  class="hidden-xs btn btn-primary btn-lg btn-danger" onclick="ga('send','event','home-ver-estudio-desktop','click')" }} Ver estudio completo {{/link-to}}
-{{#link-to "study" study.slug class="visible-xs btn btn-primary btn-danger" onclick="ga('send','event','home-ver-estudio-mobile','click')" }} Ver estudio completo {{/link-to}}
+{{#link-to "study" study.slug  class="hidden-xs btn btn-primary btn-lg btn-danger" onclick="ga('send','event','home-ver-estudio-desktop','click')" }} {{t "resume-study.study-button"}} {{/link-to}}
+{{#link-to "study" study.slug class="visible-xs btn btn-primary btn-danger" onclick="ga('send','event','home-ver-estudio-mobile','click')" }}  {{t "resume-study.study-button"}} {{/link-to}}
         </div>
       </div>
     </div>
@@ -72,10 +72,10 @@
 
 <section id="que-es-home">
   <div class="container">
-    <h2 class="text-center">¿Qué es Del Dicho al Hecho?</h2>
+    <h2 class="text-center">{{t "resume-study.title-what-is"}}</h2>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <p class="home">Del Dicho al Hecho es un estudio de <a href="//ciudadanointeligente.org" target="_blank">Ciudadano Inteligente</a> que mide el cumplimiento de las promesas legislativas establecidas por el Gobierno en su Programa presidencial y discurso del 21 de mayo.</p><br><p class="home">Con esto buscamos dar información que empodera a los ciudadanos y ciudadanas en el ejercicio de su derecho a exigir el cumplimiento de las promesas realizadas por los representantes, fortaleciendo su capacidad de fiscalización y control de gestión.</p>
+        <p class="home">{{t "resume-study.content-what-is"}}</p>
       </div>
     </div>
   </div>
@@ -84,7 +84,7 @@
 
 <section id="resume">
 <div class="container">
-  <h2 class="text-center">Cumplimiento de promesas al tercer año de gobierno de Bachelet</h2>
+  <h2 class="text-center">{{t "resume-study.title-areas"}}</h2>
   <div class="row">
     {{#each-in study.promisesGroupedByArea as |area_id a|}}
     <div class="cumplimientos cumplimientos-resumen col-sm-4 col-md-4">
@@ -94,9 +94,8 @@
         {{ember-chart type='doughnut' data=(chartPerAreaAndStudy a.area study 'front') options=study.doughnutOpt height=150}}
       </div>
       <div class="text-center promise-result home">{{a.summary.fullfilment}}%</div>
-      <p class="text-center home"><b>de avance</b></p>
-      <p class="text-center">Coherencia con la promesa <b>{{a.summary.coherenceLevel}} de 4</b></p>
-{{#link-to "study" study.slug class="btn btn-info btn-sm btn-block" onClick="ga('send', 'event', 'home-{{a.area.slug}}-ver-mas', 'click');" }} Ver más{{/link-to}}
+      <p class="text-center home"><b>{{t "resume-study.fullfillment-subtitle"}}</b></p>
+{{#link-to "study" study.slug class="btn btn-info btn-sm btn-block" onClick="ga('send', 'event', 'home-{{a.area.slug}}-ver-mas', 'click');" }} {{t "resume-study.show-more"}}{{/link-to}}
     </div>
     {{/each-in}}
   </div>

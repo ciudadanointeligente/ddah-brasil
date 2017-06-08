@@ -166,6 +166,9 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+		ENV.i18n = {
+  		defaultLocale: 'es'
+		};
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -187,6 +190,9 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.locationType = 'hash';
     ENV.rootURL = '/ddah-brasil/';
+		ENV.i18n = {
+			defaultLocale: 'es'
+		};
   }
 
   return ENV;
