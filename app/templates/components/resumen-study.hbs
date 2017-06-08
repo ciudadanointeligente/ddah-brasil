@@ -1,0 +1,110 @@
+
+{{yield}}
+<div id="welcome">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <h1 class="text-center">Quanto cumpriu Prefeitura do Rio em 200 dias de governo?</h1>
+        <p class="text-center">Quanto cumpriu a gestão de Marcelo Crivella na Prefeitura do Rio em 200 dias de governo? Descubra em Dito e Feito Rio.</p>
+        <div class="col-md-3 hidden-sm hidden-xs text-center">
+            <img src="/img/bachelet.svg">
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="total-result cumplimientos">
+              {{study.fullfilment}}%
+            </div>
+              <h3 class="label-cumplimiento">cumprimiento <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Porcentaje que indica el promedio de avance de todas las promesas contenidas en el estudio"></i></h3>
+              <div class="chart estudio-total">
+                {{ember-chart type='doughnut' data=study.chartDataFront options=study.doughnutOpt height=150}}
+              </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="total-result cumplimientos">
+              {{ study.coherenceLevel }}
+            </div>
+            <h3 class="label-coherencia">coherencia total <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Número que indica el promedio de consistencia de todas las promesas respecto a los proyectos de ley enviados al Congreso."></i></h3>
+          </div>
+          <div class="col-md-3 hidden-sm hidden-xs text-center">
+            <img src="/img/martillo.svg">
+          </div>
+      </div>
+      <div class="row movil">
+        <div class="col-md-6">
+          <ul class="list-unstyled list-inline hidden-xs">
+            <li>
+              <a href="#" onclick="window.open(&quot;//twitter.com/share?url=https%3A%2F%2Fdeldichoalhecho.cl&amp;hashtags=CuentasClaras&amp;text=Mira cuántas promesas de su cuenta pública ha cumplido Bachelet en&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
+                 <span class="fa-stack fa-lg">
+                 <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                 <i class="fa fa-twitter fa-stack-1x"></i>
+               </span>
+             </a>
+            </li>
+            <li>
+              <a href="#" onclick="window.open(&quot;//www.facebook.com/sharer/sharer.php?u=https://deldichoalhecho.cl&quot;,&quot;facebook&quot;,&quot;width=550, height=350&quot;)">
+                <span class="fa-stack fa-lg">
+                 <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                  <i class="fa fa-facebook fa-stack-1x"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <ul class="list-unstyled list-inline visible-xs text-center rrss">
+            <li>
+              <a href="#" onclick="window.open(&quot;//twitter.com/share?url=https%3A%2F%2Fdeldichoalhecho.cl&amp;hashtags=CuentasClaras&amp;text=Mira cuántas promesas de su cuenta pública ha cumplido Bachelet en&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
+                 <span class="fa-stack fa-lg">
+                 <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                 <i class="fa fa-twitter fa-stack-1x"></i>
+               </span>
+             </a>
+            </li>
+            <li>
+              <a href="#" onclick="window.open(&quot;//www.facebook.com/sharer/sharer.php?u=https://deldichoalhecho.cl&quot;,&quot;facebook&quot;,&quot;width=550, height=350&quot;)">
+                <span class="fa-stack fa-lg">
+                 <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                  <i class="fa fa-facebook fa-stack-1x"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-right">
+{{#link-to "study" study.slug  class="hidden-xs btn btn-primary btn-lg btn-danger" onclick="ga('send','event','home-ver-estudio-desktop','click')" }} Ver estudio completo {{/link-to}}
+{{#link-to "study" study.slug class="visible-xs btn btn-primary btn-danger" onclick="ga('send','event','home-ver-estudio-mobile','click')" }} Ver estudio completo {{/link-to}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="que-es-home">
+  <div class="container">
+    <h2 class="text-center">¿Qué es Del Dicho al Hecho?</h2>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <p class="home">Del Dicho al Hecho es un estudio de <a href="//ciudadanointeligente.org" target="_blank">Ciudadano Inteligente</a> que mide el cumplimiento de las promesas legislativas establecidas por el Gobierno en su Programa presidencial y discurso del 21 de mayo.</p><br><p class="home">Con esto buscamos dar información que empodera a los ciudadanos y ciudadanas en el ejercicio de su derecho a exigir el cumplimiento de las promesas realizadas por los representantes, fortaleciendo su capacidad de fiscalización y control de gestión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="resume">
+<div class="container">
+  <h2 class="text-center">Cumplimiento de promesas al tercer año de gobierno de Bachelet</h2>
+  <div class="row">
+    {{#each-in study.promisesGroupedByArea as |area_id a|}}
+    <div class="cumplimientos cumplimientos-resumen col-sm-4 col-md-4">
+      <h3 class="text-center">{{a.area.name}}</h3>
+      <div class="chart-resume text-center">
+        <img src="{{ area-image a.area.name }}" class="img-chart">
+        {{ember-chart type='doughnut' data=(chartPerAreaAndStudy a.area study 'front') options=study.doughnutOpt height=150}}
+      </div>
+      <div class="text-center promise-result home">{{a.summary.fullfilment}}%</div>
+      <p class="text-center home"><b>de avance</b></p>
+      <p class="text-center">Coherencia con la promesa <b>{{a.summary.coherenceLevel}} de 4</b></p>
+{{#link-to "study" study.slug class="btn btn-info btn-sm btn-block" onClick="ga('send', 'event', 'home-{{a.area.slug}}-ver-mas', 'click');" }} Ver más{{/link-to}}
+    </div>
+    {{/each-in}}
+  </div>
+</div>
+</section>

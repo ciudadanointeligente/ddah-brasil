@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      {{#link-to "application"}}<img src="/img/logo-ddah.svg" title="Fundación Ciudadano Inteligente" class="logo-nav img-responsive">{{/link-to}}
+      <a href="//ciudadanointeligente.org" target="_blank">Un proyecto de Ciudadano Inteligente</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right menu-list">
+        <li>{{#link-to "about" onClick="ga('send', 'event', 'menu-que-es', 'click');"}}¿Qué es?{{/link-to}}</li>
+        <li>{{#link-to "methodology" onClick="ga('send', 'event', 'menu-metodologia', 'click');"}}Metodología{{/link-to}}</li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estudios <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {{#each model as |gov|}}
+              {{#if gov.hasVisibleStudies}}
+               <li> {{gov.name}} </li>
+                {{#each gov.studies as |study|}}
+                {{#if study.isVisible}}
+                 <li>{{#link-to "study" study.slug onClick="ga('send', 'event', 'menu-study{{study.slug}}', 'click');"}} {{study.name}}{{/link-to}}</li>
+                {{/if}}
+                {{/each}}
+                <li role="separator" class="divider"></li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </li>
+
+        {{#if (comparisons-are-visible)}}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comparar estudios<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>Avance por año en cumplimiento de Programa de Gobierno</li>
+            {{#each model as |gov|}}
+            <li>{{#link-to "government" gov.slug }} {{gov.name}}{{/link-to}}</li>
+            {{/each}}
+            <li role="separator" class="divider"></li>
+            <li>Comparación entre gobiernos</li>
+            {{#each compareUrls.Programa as |comparison|}}
+            <li>{{#link-to "compare-studies" comparison.url}} {{comparison.study1.government.name}} - {{comparison.study2.government.name}} al {{comparison.study1.order}} año de gobierno {{/link-to}}</li>
+            {{/each}}
+          </ul>
+        </li>
+        {{/if}}
+
+      </ul>
+    </div>
+  </div>
+</nav>
