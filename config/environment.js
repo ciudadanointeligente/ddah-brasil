@@ -62,7 +62,7 @@ module.exports = function(environment) {
     'promise': {
       'content': 'Promesa',
       'number': 'uid',
-      'title': 'Titulo',
+      'title': 'Título',
       'ja-why': 'ja_porque',
       'jc-why': 'jn_porque',
       'coherence-level': 'escala_de_coherencia',
